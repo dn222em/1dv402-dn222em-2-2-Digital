@@ -4,3 +4,9 @@ C:\Users\dimitris\2-2digit\DigitalAlarmClock\bin\Debug\DigitalAlarmClock.exe
 C:\Users\dimitris\2-2digit\DigitalAlarmClock\bin\Debug\DigitalAlarmClock.pdb
 C:\Users\dimitris\2-2digit\DigitalAlarmClock\obj\Debug\DigitalAlarmClock.exe
 C:\Users\dimitris\2-2digit\DigitalAlarmClock\obj\Debug\DigitalAlarmClock.pdb
+C:\Users\dn222em\2-2digit\DigitalAlarmClock\bin\Debug\DigitalAlarmClock.exe.config
+C:\Users\dn222em\2-2digit\DigitalAlarmClock\obj\Debug\DigitalAlarmClock.exe
+C:\Users\dn222em\2-2digit\DigitalAlarmClock\obj\Debug\DigitalAlarmClock.pdb
+C:\Users\dn222em\2-2digit\DigitalAlarmClock\bin\Debug\DigitalAlarmClock.exe
+C:\Users\dn222em\2-2digit\DigitalAlarmClock\bin\Debug\DigitalAlarmClock.pdb
+C:\Users\dn222em\2-2digit\DigitalAlarmClock\obj\Debug\DigitalAlarmClock.csprojResolveAssemblyReference.cache

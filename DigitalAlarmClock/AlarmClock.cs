@@ -24,24 +24,24 @@ namespace DigitalAlarmClock
 
             set
             {
-                    if (value < 0 || value > 23)
-                    {
-                        throw new ArgumentException("Alarmtimmen är inte i intervallet 0-23.");
-                    }              
+                if (value < 0 || value > 23)
+                {
+                    throw new ArgumentException("Alarmtimmen är inte i intervallet 0-23.");
+                }
                 _alarmHour = value;
             }
         }
 
-        public int AlarmMinute 
+        public int AlarmMinute
         {
             get { return _alarmMinute; }
 
             set
             {
-                    if (value < 0 || value > 59)
-                    {
-                        throw new ArgumentException("Alarmminuten är inte i intervallet 0-59.");
-                    }
+                if (value < 0 || value > 59)
+                {
+                    throw new ArgumentException("Alarmminuten är inte i intervallet 0-59.");
+                }
                 _alarmMinute = value;
             }
         }
@@ -52,10 +52,10 @@ namespace DigitalAlarmClock
 
             set
             {
-                    if (value < 0 || value > 23)
-                    {
-                        throw new ArgumentException("Timmen är inte i intervallet 0-23.\n");
-                    }
+                if (value < 0 || value > 23)
+                {
+                    throw new ArgumentException("Timmen är inte i intervallet 0-23.\n");
+                }
                 _hour = value;
             }
         }
@@ -66,10 +66,10 @@ namespace DigitalAlarmClock
 
             set
             {
-                    if (value < 0 || value > 59)
-                    {
-                        throw new ArgumentException("No! No! No!");
-                    }
+                if (value < 0 || value > 59)
+                {
+                    throw new ArgumentException("No! No! No!");
+                }
                 _minute = value;
             }
         }
@@ -78,20 +78,20 @@ namespace DigitalAlarmClock
         /// Kontruktorer.
         /// </summary>
         public AlarmClock()
-            :this(0, 0)
+            : this(0, 0)
         {
-  
+
         }
 
         public AlarmClock(int hour, int minute)
-            :this(hour, minute, 0, 0)
+            : this(hour, minute, 0, 0)
         {
-            
+
         }
 
         public AlarmClock(int hour, int minute, int alarmHour, int alarmMinute)
         {
-         
+
             Hour = hour;
             Minute = minute;
             AlarmHour = alarmHour;
@@ -99,7 +99,7 @@ namespace DigitalAlarmClock
 
         }
 
-        
+
         public AlarmClock(string p)
         {
             // TODO: Complete member initialization
@@ -113,26 +113,43 @@ namespace DigitalAlarmClock
         /// <returns></returns>
         public bool TickTock()
         {
-            _minute++;
-
-                if (Minute == 60 && Hour == 23)
+            if (Minute < 59)
+            {
+                Minute++;
+            }
+            else
+            {
+                Minute = 0;
+                if (Hour < 23)
+                {
+                    Hour++;
+                }
+                else
                 {
                     Hour = 0;
-                    Minute = 0;
                 }
+            }
 
-                if (Minute == 60 && Hour  != 23)
-                {
-                    Minute = 0;
-                    Hour++;
-                }        
+            return AlarmHour == Hour && AlarmMinute == Minute;
 
-                if (AlarmHour == Hour && AlarmMinute == Minute)
-                 {                    
-                    return true;                      
-                 }
-            
-             return false;
+            //if (Minute == 60 && Hour == 23)
+            //{
+            //    Hour = 0;
+            //    Minute = 0;
+            //}
+
+            //if (Minute == 60 && Hour != 23)
+            //{
+            //    Minute = 0;
+            //    Hour++;
+            //}
+
+            //if (AlarmHour == Hour && AlarmMinute == Minute)
+            //{
+            //    return true;
+            //}
+
+            //return false;
         }
 
         /// <summary>
@@ -141,10 +158,12 @@ namespace DigitalAlarmClock
         /// <returns></returns>
         public override string ToString()
         {
+            return String.Format("{0,2}:{1:00} ({2}:{3:00})", Hour, Minute, AlarmHour, AlarmMinute);
+
             //Deklarerar nya lokala variabel av typen "string" .
             //"Int" fälten converteras till "string" med hjälp av "ToString" metod.
-        /*-------------------------------------------------------------------------------------------------------
-         -------------------------------------------------------------------------------------------------------*/
+            /*-------------------------------------------------------------------------------------------------------
+             -------------------------------------------------------------------------------------------------------*/
             //sidan 65.
             /*string hours = Hour.ToString();
             string alarmHours = AlarmHour.ToString();
@@ -155,44 +174,44 @@ namespace DigitalAlarmClock
             //return String.Format("{0, 8:0}:{1} ({2}:{3}) BEEP! BEEP! BEEP! BEEP!", hours, minutes, alarmHours, alarmMinutes);
             return String.Format("{0, 8:0}:{1} ({2}:{3})", hours, minutes, alarmHours, alarmMinutes);*/
 
-            string time = Hour.ToString() + ":" + Minute.ToString();
-            string alarmTime = AlarmHour.ToString() + ":" + AlarmMinute.ToString();
+            //string time = Hour.ToString() + ":" + Minute.ToString();
+            //string alarmTime = AlarmHour.ToString() + ":" + AlarmMinute.ToString();
 
-                if (Hour < 10)
-                {                   
-                   time =""+ Hour + ":" + Minute;
-                }
-          
-                if (AlarmHour < 10)
-                {
-                    alarmTime = "" + AlarmHour + ":" + AlarmMinute;
-                }
+            //if (Hour < 10)
+            //{
+            //    time = "" + Hour + ":" + Minute;
+            //}
 
-                if (Minute < 10)
-                {
-                    time = Hour + ":" + "0" + Minute;
-                }
-                      
-                if (AlarmMinute < 10)
-                {                  
-                    alarmTime = AlarmHour + ":" + "0" + AlarmMinute;
-                }
+            //if (AlarmHour < 10)
+            //{
+            //    alarmTime = "" + AlarmHour + ":" + AlarmMinute;
+            //}
 
-             if (time == alarmTime)
-                {
-                    for (int j = 0; j < 4; j++)
-                    {
-                        Console.Beep();
+            //if (Minute < 10)
+            //{
+            //    time = Hour + ":" + "0" + Minute;
+            //}
 
-                    }
-                    //Console.BackgroundColor = ConsoleColor.Black;
-                    //Console.ForegroundColor = ConsoleColor.White;
-                    return String.Format("{0, 8:0}  ({0}) BEEP! BEEP! BEEP! BEEP!", time, alarmTime);
-                }
+            //if (AlarmMinute < 10)
+            //{
+            //    alarmTime = AlarmHour + ":" + "0" + AlarmMinute;
+            //}
 
-            return String.Format("{0, 8:0}  ({1})", time, alarmTime);      
-         
+            //if (time == alarmTime)
+            //{
+            //    for (int j = 0; j < 4; j++)
+            //    {
+            //        Console.Beep();
+
+            //    }
+            //    //Console.BackgroundColor = ConsoleColor.Black;
+            //    //Console.ForegroundColor = ConsoleColor.White;
+            //    return String.Format("{0, 8:0}  ({0}) BEEP! BEEP! BEEP! BEEP!", time, alarmTime);
+            //}
+
+            //return String.Format("{0, 8:0}  ({1})", time, alarmTime);
+
         }
-               
+
     }
 }

@@ -66,9 +66,9 @@ namespace DigitalAlarmClock
                 ac6.Hour = 25;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {               
-                ViewErrorMessage(String.Format("Timmen är inte i intervallet 0-23.\n"));
+                ViewErrorMessage(ex.Message);
             }
             try
             {    
@@ -85,9 +85,9 @@ namespace DigitalAlarmClock
               ac6.AlarmHour = 64;
 
             }
-            catch (Exception)
-            {                
-                ViewErrorMessage(String.Format("Alarmtimmen är inte i intervallet 0-23.\n"));
+            catch (Exception ex)
+            {
+                ViewErrorMessage(ex.Message);
             }
             try
             {
@@ -151,24 +151,31 @@ namespace DigitalAlarmClock
                
                
                 
+                //for (int i = 0; i < minutes; i++)
+                //{
+                //    ac.TickTock();
+                //    //Console.ForegroundColor = ConsoleColor.White;
+                //    Console.WriteLine(ac);
+                //}
+
                 for (int i = 0; i < minutes; i++)
                 {
-                    ac.TickTock();
-                    //Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine(ac);
-                }
-
-               /* if (ac.TickTock() == true)
-                {
-                    for (int j = 0; j < 4; j++)
+                    if (ac.TickTock())
                     {
-                        Console.Beep();
-
+                        for (int j = 0; j < 4; j++)
+                        {
+                            Console.Beep();
+                        }
+                        Console.BackgroundColor = ConsoleColor.DarkBlue;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("{0, 8:0}  BEEP! BEEP! BEEP! BEEP!", ac);
+                        Console.ResetColor();
                     }
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("{0, 8:0}  BEEP! BEEP! BEEP! BEEP!", ac);
-                }*/
+                    else
+                    {
+                        Console.WriteLine(ac);
+                    }
+                }
             }
 
             /// <summary>
